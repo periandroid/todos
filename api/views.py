@@ -10,6 +10,11 @@ class UserViewSet(viewsets.ModelViewSet):
 class TodoViewSet(viewsets.ModelViewSet):
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
+    
+class UserTodoViewSet(viewsets.ModelViewSet):
+    def get_queryset(self):
+        return Todo.objects.filter(userId=self.kwargs['user_pk'])
+    serializer_class = TodoSerializer
 
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
