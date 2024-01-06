@@ -19,7 +19,17 @@ class UserTodoViewSet(viewsets.ModelViewSet):
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+    
+class UserPostViewSet(viewsets.ModelViewSet):
+    def get_queryset(self):
+        return Post.objects.filter(userId=self.kwargs['user_pk'])
+    serializer_class = PostSerializer
 
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    
+class PostCommentViewSet(viewsets.ModelViewSet):
+    def get_queryset(self):
+        return Post.objects.filter(userId=self.kwargs['user_pk'])
     serializer_class = CommentSerializer
