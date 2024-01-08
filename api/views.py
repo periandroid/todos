@@ -31,5 +31,5 @@ class CommentViewSet(viewsets.ModelViewSet):
     
 class PostCommentViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
-        return Post.objects.filter(userId=self.kwargs['user_pk'])
+        return Comment.objects.filter(postId=self.kwargs['post_pk'])
     serializer_class = CommentSerializer

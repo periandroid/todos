@@ -21,6 +21,9 @@ class Post(models.Model):
     userId= models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     body = models.CharField(max_length=200)
+    
+    def __str__(self):
+        return self.title
 
 class Comment(models.Model):
     postId = models.ForeignKey(Post, on_delete=models.CASCADE)
